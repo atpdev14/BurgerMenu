@@ -1,0 +1,6 @@
+#devouredDiv, #notDevouredDiv {
+	background: lightgrey;
+	width: 50%;
+	display: inline;
+	float: left;
+}

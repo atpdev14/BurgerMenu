@@ -1,9 +1,23 @@
-<div id="fullMenu">
+<div id="notDevouredDiv">
+	<h2>I Wanna Eat These</h2>
 	<ul>
-		{{#each allBurgers}}
-		<li>
+		<li>Test Burger</li>
+		{{#each notDevoured}}
+		<li class="menuItem">
 			{{this.burger_name}}
 			<button class="devourButton">Devour it!</button>
+		</li>
+		{{/each}}
+	</ul>
+</div>
+
+<div id="devouredDiv">
+	<h2>I Ate These</h2>
+	<ul>
+		<li>Test Burger</li>
+		{{#each devoured}}
+		<li class="menuItem">
+			{{this.burger_name}}
 		</li>
 		{{/each}}
 	</ul>
@@ -14,4 +28,4 @@
 		<input type="text" id="newBurgerTextInput">
 		<input type="submit" name="submitNewBurgerButton" id="submitNewBurgerButton">
 	</form>	
-</div>
+</div>  

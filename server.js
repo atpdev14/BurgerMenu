@@ -12,6 +12,7 @@ var port = 3000;
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(express.static("assets"));
 
 var exphbs = require("express-handlebars");
 
@@ -23,9 +24,12 @@ app.set("view engine", "handlebars");
 // =====================================================
 app.get("/", function(req, res){
   console.log("res from app.get on server.js");
-  var burgerResults = worms.displayAll("burgers", 0);
+  var burgerResults = worms.displayAll("burgers", 0, function(){
+  	console.log("burgerResults");
+  	console.log(burgerResults);
 
-  res.render("index", {allBurgers: burgerResults}); //currently returns as undefined
+  res.render("index", {notDevoured: burgerResults}); //currently returns as undefined
+  });
 });
 
     
