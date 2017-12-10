@@ -23,13 +23,20 @@ app.set("view engine", "handlebars");
 // 						ROUTES
 // =====================================================
 app.get("/", function(req, res){
-  console.log("res from app.get on server.js");
-  var burgerResults = worms.displayAll("burgers", 0, function(){
-  	console.log("burgerResults");
-  	console.log(burgerResults);
-
-  res.render("index", {notDevoured: burgerResults}); //currently returns as undefined
+	var uneatenBurgerResults;
+  worms.displayUneaten("burgers", 0, function(data){
+  	uneatenBurgerResults = {
+  		notDevoured: data
+  	};
+  	res.render("index", uneatenBurgerResults); //currently returns as undefined
   });
+
+worms.displayEaten("burgers", 1, function(data){
+	var eatenBurgers = {
+		devoured: data
+	};
+		res.render("index", eatenBurgers);
+	});
 });
 
     
