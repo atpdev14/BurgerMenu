@@ -22,8 +22,8 @@ var orm = {
   	});
   },
 
-    update: function(objColVals, condition, cb) {
-    connection.query("UPDATE burgers SET devoured=1 WHERE id=?", function(err, result) {
+    update: function(id, cb) {
+    connection.query("UPDATE burgers SET devoured=1 WHERE id=?", id, function(err, result) {
       if (err) {
         throw err;
       }

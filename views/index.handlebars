@@ -49,10 +49,17 @@
 
 	$(".devourButton").on("click", function(){
 		event.preventDefault();
-		alert("Nom Nom Nom!");
-		console.log("Id: " + $("this").id);
+		var id = this.id;
+		console.log("Button id: " + id);
+		var route = "/api/update/" + id;
 
-		
-
+		$.ajax(route, {
+      		type: "PUT",
+      		data: id
+    	}).then(
+      		function() {
+        	console.log("Burger devoured");
+        	location.reload();
+      	});
 	});
 </script>  

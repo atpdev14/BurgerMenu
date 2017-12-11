@@ -44,6 +44,16 @@ app.post("/api/newburger", function(req, res){
 	});
 });
 
+app.put("/api/update/:id", function(req, res){
+	var id = req.params.id;
+	console.log("id from server.js");
+	console.log(id);
+
+	worms.update(id, function(){
+		res.redirect("/");
+	});
+});
+
 
 
  
