@@ -7,7 +7,8 @@ var bodyParser = require("body-parser");
 var worms = require("./config/orm.js");
 
 var app = express();
-var PORT = process.env.PORT || 3000;
+var port = process.env.PORT || 3000;
+// var port = 3000;
 
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -45,7 +46,7 @@ app.post("/api/newburger", function(req, res){
 
 
 
-
+ 
 //create a route that is called by the devoured button that
 //changes the value of devoured in the database and redirects
 //to "/" to reprint all of the burgers to the appropriate div
@@ -55,6 +56,25 @@ app.post("/api/newburger", function(req, res){
 //in their appropriate div
 
 app.listen(port);  
+
+
+
+// router.put("/api/cats/:id", function(req, res) {
+//   var condition = "id = " + req.params.id;
+
+//   console.log("condition", condition);
+
+//   cat.update({
+//     sleepy: req.body.sleepy
+//   }, condition, function(result) {
+//     if (result.changedRows == 0) {
+//       // If no rows were changed, then the ID must not exist, so 404
+//       return res.status(404).end();
+//     } else {
+//       res.status(200).end();
+//     }
+//   });
+// });
 
 
 

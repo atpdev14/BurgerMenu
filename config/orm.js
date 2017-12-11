@@ -23,7 +23,7 @@ var orm = {
   },
 
     update: function(objColVals, condition, cb) {
-    connection.query("UPDATE burgers WHERE id=?", function(err, result) {
+    connection.query("UPDATE burgers SET devoured=1 WHERE id=?", function(err, result) {
       if (err) {
         throw err;
       }
@@ -34,3 +34,22 @@ var orm = {
 };
 module.exports = orm;
  
+
+
+  // update: function(table, objColVals, condition, cb) {
+  //   var queryString = "UPDATE " + table;
+
+  //   queryString += " SET ";
+  //   queryString += objToSql(objColVals);
+  //   queryString += " WHERE ";
+  //   queryString += condition;
+
+  //   console.log(queryString);
+  //   connection.query("UPDATE burgers", function(err, result) {
+  //     if (err) {
+  //       throw err;
+  //     }
+
+  //     cb(result);
+  //   });
+  // }

@@ -4,7 +4,7 @@
 		{{#each notDevoured}}
 		<li class="menuItem">
 			{{this.burger_name}}
-			<button class="devourButton">Devour it!</button>
+			<button id={{this.id}} class="devourButton">Devour it!</button>
 		</li>
 		{{/each}}
 	</ul>
@@ -50,6 +50,7 @@
 	$(".devourButton").on("click", function(){
 		event.preventDefault();
 		alert("Nom Nom Nom!");
+		console.log("Id: " + $("this").id);
 
 		
 
