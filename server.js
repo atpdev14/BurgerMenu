@@ -23,25 +23,28 @@ app.set("view engine", "handlebars");
 // 						ROUTES
 // =====================================================
 app.get("/", function(req, res){
-	var uneatenBurgerResults;
-  worms.displayUneaten("burgers", 0, function(data){
-  	uneatenBurgerResults = {
-  		notDevoured: data
-  	};
-  	res.render("index", uneatenBurgerResults); //currently returns as undefined
+	var allBurgers = {};
+  worms.displayUneaten("burgers", 0, function(data1){
+  	allBurgers.notDevoured = data1;
   });
 
-worms.displayEaten("burgers", 1, function(data){
-	var eatenBurgers = {
-		devoured: data
-	};
-		res.render("index", eatenBurgers);
+	worms.displayEaten("burgers", 1, function(data2){
+		allBurgers.devoured = data2;
+			res.render("index", allBurgers);
 	});
 });
 
-    
-//create a route that that selects all of the devoured burgers
-//from the database and print them to the appropriate div
+
+app.post("/api/newburger", function(req, res){
+	var burger_name = req.body.name;
+	console.log("Burger Name (server.js): " + burger_name);
+	worms.addBurger(burger_name, 0, function(){
+		res.redirect("/");
+	});
+});
+
+
+
 
 //create a route that is called by the devoured button that
 //changes the value of devoured in the database and redirects
@@ -51,7 +54,7 @@ worms.displayEaten("burgers", 1, function(data){
 //the database and then redirects to "/" to reprint all the burgers
 //in their appropriate div
 
-app.listen(port); 
+app.listen(port);  
 
 
 

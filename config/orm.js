@@ -6,15 +6,28 @@ var exhbs = require("express-handlebars");
 var orm = {
   displayUneaten: function(table, devoured, cb){
     connection.query("SELECT * FROM ?? WHERE devoured=?", [table, devoured], function(err, result){
-      // console.log(result);
       cb(result);
     });
   },
 
    displayEaten: function(table, devoured, cb){
     connection.query("SELECT * FROM ?? WHERE devoured=?", [table, devoured], function(err, result){
-      console.log("from displayEaten in orm.js");
-      console.log(result);
+      cb(result);
+    });
+  },
+
+  addBurger: function(burger_name, devoured, cb){
+  	connection.query("INSERT INTO burgers(burger_name, devoured) VALUES(?, ?)", [burger_name, devoured], function(err, result){
+  		cb(result);
+  	});
+  },
+
+    update: function(objColVals, condition, cb) {
+    connection.query("UPDATE burgers WHERE id=?", function(err, result) {
+      if (err) {
+        throw err;
+      }
+
       cb(result);
     });
   }

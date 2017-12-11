@@ -26,4 +26,32 @@
 		<input type="text" id="newBurgerTextInput">
 		<input type="submit" name="submitNewBurgerButton" id="submitNewBurgerButton">
 	</form>	
-</div>  
+</div>
+
+<script type="text/javascript">
+	$("#submitNewBurgerButton").on("click", function(){
+		event.preventDefault();
+		var newBurger = {
+			name: $("#newBurgerTextInput").val().trim()
+		};
+		console.log("New Burger (index.handlebars): " + newBurger.name);
+
+		$.ajax("/api/newburger", {
+      		type: "POST",
+      		data: newBurger
+    	}).then(
+      		function() {
+        	console.log("Updated new burger to database.");
+        	location.reload();
+      	});
+	});
+
+
+	$(".devourButton").on("click", function(){
+		event.preventDefault();
+		alert("Nom Nom Nom!");
+
+		
+
+	});
+</script>  
